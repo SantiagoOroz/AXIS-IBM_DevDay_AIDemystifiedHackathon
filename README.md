@@ -15,7 +15,7 @@
 This repository serves as the documentation and architecture hub for the solution:
 * **/workflows**: Flowcharts of the agentic logic and skill orchestration in watsonx Orchestrate.
 * **/prompts**: System prompt configurations for the Llama-3.2 model.
-* **/docs**: Implementation guides and business use cases for the demo (Until February 4th, as it was developed on a temporal IBM Cloud account).
+* **/docs**: Implementation guides and business use cases for the demo (Project timeline extends beyond February 4th, as it was developed on a continuous improvement basis).
 
 ---
 
@@ -30,30 +30,38 @@ In today’s business environment, compliance is often a reactive and manual pro
 ---
 
 ## ⚙️ Micro-Agent Architecture
-We have implemented a delegation architecture to maximize precision and minimize bias:
+We have implemented a delegation architecture to maximize precision and reduce bias through specialized agents:
 
 ### 1. Contract Intelligence Agent (The Reader)
 * **Model:** Llama-3.2-90b-vision-instruct.
-* **Function:** Vision processing of unstructured documents.
-* **Output:** Structured data (JSON) containing dates, liability limits, and price adjustment formulas, always linked to a textual citation from the original document.
+* **Function:** Vision processing of unstructured documents (PDFs, scans).
+* **Output:** Structured data (JSON) containing dates, liability limits, and price adjustment formulas, always linked to a textual citation from the original document. This agent does not make decisions; it extracts facts.
 
 ### 2. Compliance Reasoning Agent (The Judge)
-* **Logic:** Based on the **ReAct** framework.
-* **Mission:** Evaluate whether a received invoice or a commitment in an email violates the clauses extracted by the previous agent.
+* **Logic:** Based on the **ReAct** framework (Reason, Act, Observe).
+* **Mission:** Evaluate whether a received invoice or a commitment in an email violates the clauses extracted by the Intelligence Agent.
 * **Rigorousness:** Implements a "Mandatory Evidence" protocol. If no clause supports a judgment, the agent declares itself neutral and requests human intervention.
 
-### 3. Action Orchestrator Agent (The Executor)
+### 3. Email Intake & Summarization Agent (The Analyst)
+* **Function:** Specialized in analyzing incoming communications to identify user intent, extract key points, and summarize content into clear bullet points.
+* **Role:** Prepares structured data for downstream agents, identifying explicit requests, deadlines, or meeting proposals within raw email text.
+
+### 4. Meeting Detection & Scheduling Agent (The Coordinator)
+* **Function:** An action-oriented agent responsible for the precise scheduling of meetings only when explicitly requested.
+* **Constraint:** This agent never interprets raw emails directly. It receives structured input from the Analyst agent and triggers calendar workflows to create events and coordinate participants.
+
+### 5. Action Orchestrator Agent (The Executor)
 * **Role:** The operational arm within **watsonx Orchestrate**.
-* **Action:** Receives structured compliance decisions and translates them into API calls to Slack, Outlook, Jira, and Trello. It does not reason about law; its focus is execution integrity.
+* **Action:** Receives structured compliance decisions and translates them into API calls to Slack, Outlook, Jira, and Trello. It focuses exclusively on the integrity of business execution.
 
 ---
 
 ## 🛠️ Technological Stack
 * **AI Platform:** [watsonx.ai](https://www.ibm.com/watsonx)
-* **LLM/VLM Models:** Llama-3.2-90b-vision-instruct (Multimodal).
+* **Model:** Llama-3.2-90b-vision-instruct (Multimodal reasoning).
 * **Orchestration:** [watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate) utilizing Agentic Workflows.
 * **Decision Framework:** ReAct Logic (Reason, Act, Observe).
-* **Integrations:** Jira Software, Slack Enterprise, Trello API, Microsoft Outlook, Google Drive.
+* **Integrations:** Jira Software, Slack Enterprise, Trello API, Microsoft Outlook/Calendar, Google Drive.
 
 ---
 
@@ -62,21 +70,23 @@ Axis operates under a set of non-negotiable guidelines configured in its base be
 
 | Condition | Agentic Action |
 | :--- | :--- |
-| **No Hallucination** | Strict prohibition on inferring terms not present in the document. |
-| **Textual Evidence** | Every compliance decision must cite the exact paragraph from the contract. |
-| **Financial Safeguard** | The agent can detect invoice errors but is forbidden from executing payments. |
-| **Conflict Detection** | If contradictory information is found between documents, the agent suspends action and escalates to the user. |
-| **Missing Info Protocol** | Does not assume data; if a field for Jira/Trello is missing, it asks explicitly. |
+| **No Hallucination** | Strict prohibition on inferring terms not present in the document or email. |
+| **Evidence-based Decisions** | Every compliance decision must cite the exact paragraph from the governing document. |
+| **Financial Safeguard** | Axis flags discrepancies and escalates issues but is forbidden from approving or executing payments. |
+| **Conflict Detection** | If contradictory information is found between documents, all actions are suspended until human resolution. |
+| **Missing Info Protocol** | If tool inputs (Jira/Trello/Calendar) are ambiguous, Axis will ask a single clear question rather than guessing. |
+| **Simulation Mode** | All external actions (emails, tickets, tasks) are explicitly labeled as: `✅ [Simulation] Action completed successfully.` |
 
 ---
 
 ## 🚀 Demo Flow: From Email to Action
-For evaluation purposes, Axis demonstrates its autonomy through the following scenario:
-1.  **Ingestion:** Receipt of a service contract via Outlook.
-2.  **Reasoning:** Axis identifies a 5% annual increase and a specific start date.
-3.  **Execution 1:** Automatically creates a project plan in **Trello** based on contract milestones.
-4.  **Validation:** Receives an invoice showing a 10% increase.
-5.  **Execution 2:** Axis detects the violation, cites the 5% increase clause, sends a **Slack** alert, and opens a dispute ticket in **Jira**.
+Axis demonstrates its autonomy through the following comprehensive scenario:
+1.  **Ingestion:** Receipt of a service contract via Outlook and a follow-up email from a provider.
+2.  **Analysis:** The **Email Intake Agent** identifies a meeting request and a project start date.
+3.  **Scheduling:** The **Meeting Agent** automatically coordinates the kickoff on the calendar.
+4.  **Reasoning:** Axis identifies a 5% annual increase clause in the contract PDF.
+5.  **Validation:** Upon receiving a simulated invoice with a 10% increase, Axis detects the violation.
+6.  **Enforcement:** Axis cites the 5% increase clause, posts a high-priority alert to **Slack**, and opens a "Disputed" ticket in **Jira**.
 
 ---
 
@@ -88,4 +98,4 @@ Developed for the **IBM Hackathon 2026** by:
 * **[Milagros Argañin](https://www.linkedin.com/in/milagros-arga%C3%B1in-13641a376/)** - miliarganin3@gmail.com
 
 ---
-*Axis demonstrates how the power of open models in watsonx.ai transforms legal compliance into an operational advantage.*
+*Axis demonstrates how the power of open models in watsonx.ai transforms legal compliance and communication into an automated operational advantage.*
