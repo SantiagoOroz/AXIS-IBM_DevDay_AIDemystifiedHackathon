@@ -98,4 +98,7 @@ Developed for the **IBM Hackathon 2026** by:
 * **[Milagros Argañin](https://www.linkedin.com/in/milagros-arga%C3%B1in-13641a376/)** - miliarganin3@gmail.com
 
 ---
+
+![WorkFlow](workflows/OrchestrateFlowComplicated.png)
+
 *Axis demonstrates how the power of open models in watsonx.ai transforms legal compliance and communication into an automated operational advantage.*
