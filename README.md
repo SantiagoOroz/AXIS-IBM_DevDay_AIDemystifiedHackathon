@@ -43,9 +43,9 @@ Este repositorio funciona como el centro de documentación y arquitectura de la 
 ## 👥 Equipo
 Proyecto desarrollado para la **IBM Hackathon 2026** por:
 
-* **Santiago Oroz** - [santiago.oroz1510@gmail.com](mailto:santiago.oroz1510@gmail.com)
-* **Renata Berho** - [renaberho2@gmail.com](mailto:renaberho2@gmail.com)
-* **Milagros Argañin** - [miliarganin3@gmail.com](mailto:miliarganin3@gmail.com)
+* **[Santiago Oroz](https://www.linkedin.com/in/santiago-oroz/)** - santiago.oroz1510@gmail.com.
+* **[Renata Berho](https://www.linkedin.com/in/renata-berho-02264230a/)** - renaberho2@gmail.com
+* **[Milagros Argañin](https://www.linkedin.com/in/milagros-arga%C3%B1in-13641a376/)** - miliarganin3@gmail.com
 
 ---
 *Axis demuestra cómo la potencia de los modelos abiertos en watsonx.ai permite transformar el cumplimiento legal en una ventaja operativa.*
