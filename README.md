@@ -14,8 +14,7 @@
 ## 🛠️ Repository Content
 This repository serves as the documentation and architecture hub for the solution:
 * **/workflows**: Flowcharts of the agentic logic and skill orchestration in watsonx Orchestrate.
-* **/prompts**: System prompt configurations for the Llama-3.2 model.
-* **/docs**: Implementation guides and business use cases for the demo (Project timeline extends beyond February 4th, as it was developed on a continuous improvement basis).
+* **/docs**: Implementation guides and business use cases for the demo.
 
 ---
 
