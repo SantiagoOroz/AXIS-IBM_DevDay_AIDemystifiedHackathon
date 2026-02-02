@@ -9,6 +9,7 @@
 
 > **Axis** is not a chatbot; it is an ecosystem of autonomous agents acting as the connective tissue between static legal contracts and dynamic operational execution.
 
+![CoverImage](workflows/AXIS-Portada.png)
 ---
 
 ## 🛠️ Repository Content
@@ -26,7 +27,7 @@ In today’s business environment, compliance is often a reactive and manual pro
 2.  **Orchestrate** enterprise tools (Jira, Trello, Slack).
 3.  **Act** proactively regarding expiration dates or compliance risks.
 
-* **Video demonstration URL**:
+* **Video demonstration URL**: https://drive.google.com/file/d/1MWsJt3qphD0gVwhMKANfx9_gJrkQcBPO/view?usp=sharing
 
 ---
 
